@@ -39,3 +39,19 @@ export function TrackRow({ track, index, playing, onTogglePreview, actions }) {
     </li>
   )
 }
+
+export function TrackSkeleton({ rows = 5 }) {
+  return (
+    <ul className="track-list" aria-busy="true">
+      {Array.from({ length: rows }, (_, i) => (
+        <li key={i} className="track track--skeleton">
+          <span className="skeleton" style={{ width: 44, height: 44 }} />
+          <div className="track__meta">
+            <span className="skeleton" style={{ width: '55%', height: 12 }} />
+            <span className="skeleton" style={{ width: '35%', height: 10, marginTop: 8 }} />
+          </div>
+        </li>
+      ))}
+    </ul>
+  )
+}

@@ -6,7 +6,7 @@ export function Header({ user, onLogout }) {
     <header className="app-header">
       <Link to="/" className="brand">
         <span className="brand__mark"><Icon name="music" size={18} /></span>
-        Promptlist
+        THE CUT
       </Link>
       <div className="app-header__right">
         {user && <span className="avatar" title={user.email ?? ''}>{(user.displayName ?? '?')[0]}</span>}

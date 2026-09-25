@@ -1,4 +1,3 @@
-import { Link } from 'react-router'
 import { Icon } from '../components/Icons'
 import { LOGIN_URL } from '../lib/api'
 
@@ -7,7 +6,7 @@ export default function Login() {
     <main className="login">
       <div className="login__card">
         <span className="brand__mark brand__mark--lg"><Icon name="music" size={28} /></span>
-        <h1>Promptlist</h1>
+        <h1>THE CUT</h1>
         <p className="muted">
           Describe a mood, a moment or a genre. We'll pick the songs and save the playlist straight to your Spotify.
         </p>
@@ -25,7 +24,6 @@ export default function Login() {
         <p className="muted small">
           We only ask for permission to read your profile and create playlists.
         </p>
-        <Link to="/" className="small">Preview the app without logging in →</Link>
       </div>
     </main>
   )

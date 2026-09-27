@@ -13,6 +13,7 @@ const paths = {
   back: 'M15 5l-7 7 7 7',
   logout: 'M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10',
   refresh: 'M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6',
+  mic: 'M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM5 11a7 7 0 0 0 14 0M12 18v3M9 21h6',
 }
 
 export function Icon({ name, size = 18 }) {

@@ -1132,3 +1132,49 @@
   font-size: 11px;
   color: var(--red-hi);
 }
+
+/* ---------- Voice input ---------- */
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap .input--area {
+  padding-right: 60px;
+}
+
+.input-wrap .mic-btn {
+  position: absolute;
+  right: 12px;
+  bottom: 14px;
+}
+
+.mic-btn.is-listening {
+  background: var(--red);
+  color: #fff;
+  box-shadow: inset 2px 2px 0 var(--red-hi), inset -2px -2px 0 var(--red-lo), 0 0 16px rgba(255, 45, 45, 0.8);
+  animation: rec-pulse 0.9s steps(2) infinite;
+}
+
+/* "REC" tag while recording */
+.mic-btn.is-listening::after {
+  content: 'REC';
+  position: absolute;
+  top: -12px;
+  right: -10px;
+  padding: 2px 4px;
+  border: 2px solid var(--ink);
+  background: var(--red);
+  color: #fff;
+  font-family: var(--pixel);
+  font-size: 7px;
+}
+
+.mic-btn {
+  position: relative;
+}
+
+@keyframes rec-pulse {
+  50% {
+    background: var(--red-lo);
+  }
+}

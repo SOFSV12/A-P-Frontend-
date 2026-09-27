@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { Modal } from './Modal'
 import { Icon } from './Icons'
 import { TrackRow, TrackSkeleton } from './TrackRow'
+import { MicButton } from './MicButton'
 import { api } from '../lib/api'
 import { isPublishable, publishableUris } from '../lib/tracks'
 import { usePreview } from '../lib/usePreview'
@@ -205,17 +206,21 @@ export function GenerateModal({ open, onClose, onPublished }) {
 
       {step === 'prompt' && (
         <form id="prompt-form" onSubmit={generate} className="stack">
-          <label className="field">
-            <span className="field__label">Describe your playlist</span>
-            <textarea
-              className="input input--area"
-              rows={4}
-              placeholder="e.g. Moody synth-pop for a late-night drive through the city"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              autoFocus
-            />
-          </label>
+          <div className="field">
+            <label className="field__label" htmlFor="prompt-input">Describe your playlist (type or speak)</label>
+            <div className="input-wrap">
+              <textarea
+                id="prompt-input"
+                className="input input--area"
+                rows={4}
+                placeholder="e.g. Moody synth-pop for a late-night drive through the city"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                autoFocus
+              />
+              <MicButton value={prompt} onChange={setPrompt} onError={(message) => setError({ message })} />
+            </div>
+          </div>
           <div className="chips">
             {SUGGESTIONS.map((s) => (
               <button key={s} type="button" className="chip" onClick={() => setPrompt(s)}>{s}</button>
@@ -243,6 +248,7 @@ export function GenerateModal({ open, onClose, onPublished }) {
               onChange={(e) => setInstruction(e.target.value)}
               disabled={!!busy}
             />
+            <MicButton value={instruction} onChange={setInstruction} onError={(message) => setError({ message })} disabled={!!busy} />
             <button type="submit" className="btn btn--secondary btn--sm" disabled={!!busy || !instruction.trim()}>
               {busy === 'revise' ? <span className="spinner" /> : <Icon name="refresh" size={14} />} Revise
             </button>
@@ -271,6 +277,11 @@ export function GenerateModal({ open, onClose, onPublished }) {
                   value={search.query}
                   onChange={(e) => setSearch((s) => ({ ...s, query: e.target.value }))}
                   autoFocus
+                />
+                <MicButton
+                  value={search.query}
+                  onChange={(query) => setSearch((s) => ({ ...s, query }))}
+                  onError={(error) => setSearch((s) => ({ ...s, error }))}
                 />
                 <button type="submit" className="btn btn--secondary btn--sm" disabled={!search.query.trim() || search.loading}>Search</button>
                 <button type="button" className="icon-btn" aria-label="Close search" onClick={() => setSearch(EMPTY_SEARCH)}>

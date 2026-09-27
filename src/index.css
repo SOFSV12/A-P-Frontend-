@@ -1,28 +1,43 @@
 :root {
-  --bg: #0e0e10;
-  --surface: #17171a;
-  --surface-2: #202024;
-  --surface-3: #2a2a2f;
-  --border: #2e2e34;
-  --text: #f4f4f5;
-  --muted: #a1a1aa;
-  --accent: #1ed760;
-  --accent-hover: #3be477;
-  --accent-ink: #04130a;
-  --warn: #f5b041;
-  --warn-bg: rgba(245, 176, 65, 0.1);
-  --danger: #f26d7d;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  /* Arcade cabinet palette: deep night sky, neon, and fighter-select brights */
+  --bg: #0a0520;
+  --bg-2: #140a38;
+  --surface: #1b1047;
+  --surface-2: #26175e;
+  --surface-3: #342079;
+  --ink: #000;
+  --text: #f6f1ff;
+  --muted: #b7a8e8;
 
-  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --yellow: #ffd400;
+  --yellow-hi: #fff27a;
+  --yellow-lo: #b08c00;
+  --red: #e0141e;
+  --red-hi: #ff5b5b;
+  --red-lo: #7a0008;
+  --cyan: #00e5ff;
+  --cyan-hi: #8ff6ff;
+  --cyan-lo: #007c8c;
+  --magenta: #ff2bd6;
+  --magenta-hi: #ff8bec;
+  --magenta-lo: #8a0070;
+  --green: #39ff14;
 
-  font: 15px/1.5 var(--sans);
+  --accent: var(--yellow);
+  --warn: var(--yellow);
+  --danger: var(--red-hi);
+
+  --border: 4px solid var(--ink);
+  --drop: 6px 6px 0 var(--ink);
+  --drop-sm: 4px 4px 0 var(--ink);
+
+  --pixel: 'Press Start 2P', ui-monospace, monospace;
+  --term: 'VT323', ui-monospace, Consolas, monospace;
+
+  font: 21px/1.25 var(--term);
   color: var(--text);
   background: var(--bg);
   color-scheme: dark;
-  -webkit-font-smoothing: antialiased;
 }
 
 *,
@@ -33,26 +48,57 @@
 
 body {
   margin: 0;
-  background: var(--bg);
   min-height: 100svh;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% -10%, rgba(255, 43, 214, 0.28), transparent 60%),
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 229, 255, 0.18), transparent 70%),
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  background-attachment: fixed;
+}
+
+/* Neon perspective grid on the "floor" — the far-future horizon */
+body::before {
+  content: '';
+  position: fixed;
+  inset: auto -50% 0 -50%;
+  height: 45vh;
+  z-index: -1;
+  background:
+    repeating-linear-gradient(90deg, rgba(0, 229, 255, 0.35) 0 2px, transparent 2px 80px),
+    repeating-linear-gradient(0deg, rgba(255, 43, 214, 0.35) 0 2px, transparent 2px 60px);
+  transform: perspective(300px) rotateX(60deg);
+  transform-origin: bottom;
+  mask-image: linear-gradient(to top, #000 10%, transparent 90%);
+  pointer-events: none;
+}
+
+/* CRT scanlines */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+  pointer-events: none;
 }
 
 h1,
 h2,
 h3 {
   margin: 0;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-family: var(--pixel);
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 h1 {
-  font-size: clamp(26px, 4vw, 36px);
-  font-weight: 700;
+  font-size: clamp(18px, 3.4vw, 28px);
 }
 
 h2 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 14px;
 }
 
 p {
@@ -60,7 +106,7 @@ p {
 }
 
 a {
-  color: var(--accent);
+  color: var(--cyan);
   text-decoration: none;
 }
 
@@ -74,8 +120,13 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: 3px dashed var(--yellow);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--magenta);
+  color: #fff;
 }
 
 .muted {
@@ -83,9 +134,19 @@ button {
 }
 
 .small {
-  font-size: 13px;
+  font-size: 18px;
 }
 
 .text-warn {
-  color: var(--warn);
+  color: var(--yellow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

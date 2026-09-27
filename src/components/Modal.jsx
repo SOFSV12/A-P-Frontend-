@@ -21,7 +21,7 @@ export function Modal({ open, onClose, title, children, footer, size = 'md' }) {
       <div className={`modal modal--${size}`} role="dialog" aria-modal="true" aria-label={typeof title === 'string' ? title : undefined}>
         <header className="modal__header">
           <div className="modal__title">{title}</div>
-          <button type="button" className="icon-btn" onClick={onClose} aria-label="Close">
+          <button type="button" className="modal__close" onClick={onClose} aria-label="Close">
             <Icon name="close" />
           </button>
         </header>

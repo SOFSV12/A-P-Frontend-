@@ -55,6 +55,11 @@ export default function Home() {
         <section className="page-head">
           <div>
             <h1>{user?.displayName ? `${user.displayName}'s playlists` : 'Your playlists'}</h1>
+            {playlists && (
+              <p className="score">
+                Hi-score <strong>{String(playlists.length).padStart(3, '0')}</strong> playlists
+              </p>
+            )}
             <p className="muted">Describe a vibe and we'll build the playlist on your Spotify account.</p>
           </div>
           <button type="button" className="btn btn--primary btn--lg" onClick={() => setGenerating(true)}>

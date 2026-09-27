@@ -13,7 +13,7 @@ const SUGGESTIONS = [
   'High energy workout hip hop',
 ]
 
-const STEP_TITLES = { prompt: 'New playlist', review: 'Review songs', published: 'Published' }
+const STEP_TITLES = { prompt: 'New playlist // choose your vibe', review: 'Review songs // build your roster', published: 'Published // victory' }
 const EMPTY_SEARCH = { open: false, query: '', results: null, loading: false, error: null, replaceIndex: null }
 
 // Flow: prompt → review (revise / search / remove) → published.
@@ -161,7 +161,7 @@ export function GenerateModal({ open, onClose, onPublished }) {
   const footer =
     step === 'prompt' ? (
       <>
-        <button type="button" className="btn btn--ghost" onClick={close}>Cancel</button>
+        <button type="button" className="btn btn--cancel" onClick={close}>Cancel</button>
         <button type="submit" form="prompt-form" className="btn btn--primary" disabled={!prompt.trim()}>
           <Icon name="sparkle" size={16} /> Generate songs
         </button>
@@ -353,7 +353,7 @@ export function GenerateModal({ open, onClose, onPublished }) {
 
       {step === 'published' && published && (
         <div className="success">
-          <div className="success__icon"><Icon name="check" size={32} /></div>
+          <div className="ko" aria-hidden="true">K.O.!</div>
           <h2>"{published.playlist.name}" is on Spotify</h2>
           <p className="muted">
             {published.tracks_added} {published.tracks_added === 1 ? 'song' : 'songs'} added. If your Spotify account has an email, we'll send you a summary.
@@ -373,7 +373,7 @@ function Steps({ step }) {
     <ol className="steps">
       {['Prompt', 'Review', 'Publish'].map((label, i) => (
         <li key={label} className={i < current ? 'is-done' : i === current ? 'is-current' : ''}>
-          <span>{i + 1}</span> {label}
+          Round {i + 1}: {label}
         </li>
       ))}
     </ol>

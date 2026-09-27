@@ -9,7 +9,7 @@ export function TrackRow({ track, index, playing, onTogglePreview, actions }) {
 
   return (
     <li className={`track ${valid ? '' : 'track--unresolved'}`}>
-      {index != null && <span className="track__index">{index + 1}</span>}
+      {index != null && <span className="track__index">{String(index + 1).padStart(2, '0')}</span>}
       <Cover src={track.album_art} title={track.title} size={44} />
       <div className="track__meta">
         <div className="track__title">{track.title}</div>

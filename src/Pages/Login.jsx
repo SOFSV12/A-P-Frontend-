@@ -5,8 +5,9 @@ export default function Login() {
   return (
     <main className="login">
       <div className="login__card">
-        <span className="brand__mark brand__mark--lg"><Icon name="music" size={28} /></span>
-        <h1>THE CUT</h1>
+        <span className="brand__mark brand__mark--lg"><Icon name="music" size={32} /></span>
+        <h1 className="login__title">THE CUT</h1>
+        <p className="login__tagline">AI playlist fighter · Est. 199X / 2099</p>
         <p className="muted">
           Describe a mood, a moment or a genre. We'll pick the songs and save the playlist straight to your Spotify.
         </p>
@@ -19,8 +20,9 @@ export default function Login() {
 
         {/* Full-page redirect to Spotify consent. Must not be fetch()ed. */}
         <a className="btn btn--primary btn--lg btn--block" href={LOGIN_URL}>
-          Continue with Spotify
+          Press start · Continue with Spotify
         </a>
+        <p className="login__coin blink" aria-hidden="true">Insert coin</p>
         <p className="muted small">
           We only ask for permission to read your profile and create playlists.
         </p>

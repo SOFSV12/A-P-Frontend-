@@ -44,10 +44,10 @@ export const PlaylistModal = ({ playlist, onClose }) => {
       open={!!playlist}
       onClose={onClose}
       size="lg"
-      title={<span className="modal__eyebrow">Playlist</span>}
+      title={<span className="modal__eyebrow">Player select</span>}
       footer={
         <>
-          <button type="button" className="btn btn--ghost" onClick={onClose}>Close</button>
+          <button type="button" className="btn btn--cancel" onClick={onClose}>Close</button>
           <a className="btn btn--primary" href={info.playlist_url} target="_blank" rel="noreferrer">
             <Icon name="external" size={16} /> Open in Spotify
           </a>

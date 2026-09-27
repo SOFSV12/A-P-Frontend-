@@ -7,7 +7,7 @@ export default function Login() {
       <div className="login__card">
         <span className="brand__mark brand__mark--lg"><Icon name="music" size={32} /></span>
         <h1 className="login__title">THE CUT</h1>
-        <p className="login__tagline">AI playlist fighter · Est. 199X / 2099</p>
+        <p className="login__tagline">Playlist fighter · Est. 199X / 2099</p>
         <p className="muted">
           Describe a mood, a moment or a genre. We'll pick the songs and save the playlist straight to your Spotify.
         </p>

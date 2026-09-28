@@ -320,6 +320,10 @@
 }
 
 .input--bare {
+  /* An <input>'s default width (~290px here) otherwise sets the row's minimum
+     width, which stretched the whole modal past a phone screen. */
+  flex: 1;
+  width: 0;
   border: 0;
   background: transparent;
   padding: 4px 0;
@@ -611,6 +615,8 @@
   inset: 0;
   z-index: 100;
   display: grid;
+  /* Never let modal content widen the column beyond the screen. */
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   padding: 16px;
   background:

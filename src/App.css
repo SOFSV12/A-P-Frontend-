@@ -455,19 +455,20 @@
 /* ---------- Playlist grid: character select ---------- */
 .playlist-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(190px, 100%), 1fr));
   gap: 22px;
 }
 
 @media (max-width: 480px) {
   .playlist-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
   }
 }
 
 .playlist-card {
   position: relative;
+  min-width: 0; /* let long nowrap titles ellipsize instead of widening the column */
   padding: 10px;
   transition: transform 0.1s;
 }
